@@ -1,8 +1,19 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(40, 40, 40);
+  background-image: url('assets/Hut.gif');
+  background-repeat: repeat;
+  background-size: cover;
 }
 
 canvas {
   display: block;
+  border: 5px solid rgb(255, 255, 255);
+  flex: none;
+  border-radius: 45px 0 45px 0; /* Top-left and bottom-right corners rounded */
 }
