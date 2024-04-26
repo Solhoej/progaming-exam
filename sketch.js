@@ -2,13 +2,15 @@ let datastore = {};
 
 let SearchBar;
 
-function setup() {
+function setup() 
+{
   createCanvas(windowWidth/1.2, windowHeight/1.2);
   background(127, 94, 145, 25);
   GUIApplications();
 }
 
-function draw() {
+function draw() 
+{
   GUI();
 }
 
