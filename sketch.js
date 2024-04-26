@@ -3,11 +3,13 @@ let datastore = {};
 let SearchBar;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth/1.2, windowHeight/1.2);
+  background(127, 94, 145, 25);
+  GUIApplications();
 }
 
 function draw() {
-  background(220);
+  GUI();
 }
 
 function createAccount()
