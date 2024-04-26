@@ -1,17 +1,30 @@
 let datastore = {};
 
-let SearchBar;
-let SearchButton;
-
 function setup() {
-  createCanvas(windowWidth / 1.2, windowHeight / 1.2);
-  background(117, 94, 140, 20);
-  GUIApplications();
+  createCanvas(400, 400);
 }
 
 function draw() {
-  //background(16,53,95);
-  GUI();
+  background(220);
+}
+
+function createAccount()
+{
+  let newAccount = new Accounts("Lars", "Mikkelsen", "2004006969", "Squidgame Street 69", 10);
+  newAccount.accountRegistration();
+  let key = newAccount.accountNumber;
+
+  for (let i = 0; i < datastore.length; i++)
+  {
+    existingKeys = datastore[i];
+    while (key == existingKeys)
+    {
+      newAccount.accountNumberGeneration();
+    }
+  }
+
+  datastore[key] = newAccount;
+  print(datastore);
 }
 
 function GUIApplications()
