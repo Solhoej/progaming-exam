@@ -1,7 +1,7 @@
 let datastore;
 
 function setup() {
-  createCanvas(windowWidth / 1.2, windowHeight / 1.2);
+  createCanvas(400, 400);
 }
 
 function draw() {
