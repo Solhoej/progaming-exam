@@ -55,6 +55,7 @@ function createAccount(FirstName, LastName, CPRNumber, Address, Balance=0)
     }
   }
 
+  //Add the account to the datastore with the accountNumber as the keycode
   datastore[key] = newAccount;
   print(datastore);
 }
