@@ -3,15 +3,19 @@ let datastore = {};
 let SearchBar;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth / 1.2, windowHeight / 1.2);
+  GUIApplications();
+  //  background(220);
 }
 
 function draw() {
-  background(220);
+  GUI();
+
 }
 
 function createAccount()
 {
+  //Read strings from input boxes instead of hardcoding them into the constructor
   let newAccount = new Accounts("Lars", "Mikkelsen", "2004006969", "Squidgame Street 69", 10);
   newAccount.accountRegistration();
   let key = newAccount.accountNumber;
@@ -25,6 +29,7 @@ function createAccount()
     }
   }
 
+  //Add the account to the datastore with the accountNumber as the keycode
   datastore[key] = newAccount;
   print(datastore);
 }
