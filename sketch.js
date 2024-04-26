@@ -10,6 +10,7 @@ function setup() {
 }
 
 function draw() {
+  //background(16,53,95);
   GUI();
 }
 
