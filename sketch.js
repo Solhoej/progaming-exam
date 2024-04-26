@@ -21,8 +21,6 @@ function GUIApplications()
   SearchBar.position(width/6, height/7)
   SearchBar.size(200, 15)
 
-  
-
 }
 
 function Scrollframe(x=0, y=0)
