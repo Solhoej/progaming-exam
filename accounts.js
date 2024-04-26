@@ -24,11 +24,9 @@ class Accounts
 
     accountRegistration()
     {
-        this.accountName = `${this.accountLastName} ${this.accountFirstName}`;
-
         this.account = 
         {
-            name: this.accountName, 
+            name: `${this.accountLastName} ${this.accountFirstName}`, 
             cprNumber: this.cprNumber.toString(),
             address: this.address,
             accountNumber: this.accountNumberGeneration()
