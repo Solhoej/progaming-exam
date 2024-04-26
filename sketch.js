@@ -1,4 +1,4 @@
-let datastore;
+let datastore = {};
 
 function setup() {
   createCanvas(400, 400);
@@ -28,9 +28,4 @@ function GUI()
 
   //section3
   pop();
-}
-
-function Datastore()
-{
-  datastore = {}
 }
