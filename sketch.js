@@ -21,6 +21,7 @@ let account1;
 
 let hideAlpha = 0;
 
+//determines the scroll position
 let scrollPos = 0;
 
 function setup() 
@@ -28,29 +29,39 @@ function setup()
   createCanvas(windowWidth/1.2, windowHeight/1.2);
   background(127, 94, 145, 25);
 
+  //create a localStorage to save our datastore
   let savedData = localStorage.getItem('datastore');
   if (savedData) 
   {
+    //if theres already data then we will throw that data into our datastore table
     datastore = JSON.parse(savedData);
   }
 
+  //setting up guis
   GUIApplications();
   console.log(Object.keys(datastore).length);
 }
 
 function draw() 
 {
+  //making everything word repeatedly
   GUI();
   checkInputs(FirstNameBar.value(), LastNameBar.value(), FakePersonalNumber.value(), AdressInput.value());
   displaySelectedAccount();
 }
 
 function displayDatastoreContent(posY=60) {
+  //we will declare what the user has searched
   let searchString = SearchBar.value().toLowerCase().replace(/\s/g, '');
+  //we will loop through all our keys
   for (let key in datastore) {
+    //declare current account
     let account = datastore[key];
+    //we will declare what we want to search for
     let fullName = `${account.accountLastName}${account.accountFirstName}`.toLowerCase().replace(/\s/g, '');
+    //if what we want to search for has whatever the user has searched then
     if (fullName.includes(searchString)) {
+      //we will declare the accounts info and put the string together
       let accountInfo = `Account Number: ${key}\n`;
       accountInfo += `Name: ${account.accountLastName} ${account.accountFirstName}\n`;
       accountInfo += `CPR Number: ${account.cprNumber}\n`;
@@ -66,6 +77,8 @@ function displayDatastoreContent(posY=60) {
       textAlign(LEFT);
       textSize(16);
       fill(255);
+
+      //here we display the info string
       text(accountInfo, width / 50 + 20, posY);
       posY += 140;
     }
@@ -74,8 +87,10 @@ function displayDatastoreContent(posY=60) {
 
 function displaySelectedAccount()
 {
+  //if we have a selected account then
   if(account1)
   {
+    //this is just to check if our month is less than 10
     let ControlVariable
 
     if(int(datastore[account1].creationDate[3]) < 10)
@@ -87,6 +102,7 @@ function displaySelectedAccount()
       ControlVariable = "";
     }
 
+    //we will change the html of our dom objects to the accounts info
     AccountNameInfo.html(datastore[account1].accountFirstName + " " + datastore[account1].accountLastName);
     AccountNumberInfo.html(datastore[account1].bankAddress + datastore[account1].accountNumber);
     AccountcprNumberInfo.html(datastore[account1].cprNumber)
@@ -97,16 +113,19 @@ function displaySelectedAccount()
 }
 
 function deleteSelectedAccount() {
+  //will delete the selected account
   if (account1) {
     delete datastore[account1];
     account1 = undefined;
   }
 
+  //will save the data to the datastore so it stays deleted
   localStorage.setItem('datastore', JSON.stringify(datastore));
 }
 
 function checkInputs(FirstName, LastName, CPRNumber, Adress)
 {
+  //we will check if the user can interact with objects
   let firstName = FirstName
   let lastName = LastName
   let cprNumber = CPRNumber
@@ -143,6 +162,7 @@ function checkInputs(FirstName, LastName, CPRNumber, Adress)
     AccountCreationdateInfo.show()
   }
 
+  //will wait 3000 milliseconds(3 seconds) then change the dom
   if (millis() - startTime >= waitTime) {
     errorOutput.html("You need to fill out all of the forms!")
     errorOutput.style('color', 'red');
@@ -152,10 +172,14 @@ function checkInputs(FirstName, LastName, CPRNumber, Adress)
 
 function createAccount(FirstName, LastName, CPRNumber, Address, Balance=0)
 {
+  //we create a new account object
   let newAccount = new Accounts(FirstName, LastName, CPRNumber, Address, Balance);
+  //we will registrate the account (meaning that we will generate an account number)
   newAccount.accountRegistration();
+  //we will declare our key
   let key = newAccount.accountNumber;
 
+  //we will look through all account and check if the number we generated is already existing
   for (let i = 0; i < datastore.length; i++)
   {
     existingKeys = datastore[i];
@@ -171,6 +195,7 @@ function createAccount(FirstName, LastName, CPRNumber, Address, Balance=0)
   datastore[key] = newAccount;
   account1 = key;
 
+  //save the data to the datastore
   localStorage.setItem('datastore', JSON.stringify(datastore));
   print(datastore);
   print(account1);
@@ -273,6 +298,7 @@ function GUIApplications()
 
 function CreateButtonFunction() 
 {
+  //will call the createAccount function when clicked
   console.log("Hello")
   startTime = millis();
   createAccount(FirstNameBar.value(), LastNameBar.value(), FakePersonalNumber.value(), AdressInput.value());
