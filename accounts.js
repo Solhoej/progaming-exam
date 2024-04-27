@@ -11,7 +11,7 @@ class Accounts
 
         this.balance = balance;
         this.accountNumber;
-        this.accountHistory = {};
+        this.accountHistory = {"1":""};
         this.account;
 
         this.savingsAccounts = [];

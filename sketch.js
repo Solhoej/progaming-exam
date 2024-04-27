@@ -7,13 +7,13 @@ let FakePersonalNumber;
 let CreateAccountButton;
 let AdressInput;
 let errorOutput;
+let deleteAccountButton;
 
 let startTime;
 let waitTime = 5000;
 
 //decides which accounts to be displayed in the middle display
 let account1;
-let account2;
 
 let hideAlpha = 0;
 
@@ -31,6 +31,7 @@ function draw()
 {
   GUI();
   checkInputs(FirstNameBar.value(), LastNameBar.value(), FakePersonalNumber.value(), AdressInput.value());
+  displaySelectedAccount();
 }
 
 function displayDatastoreContent(posY=60) {
@@ -60,6 +61,36 @@ function displayDatastoreContent(posY=60) {
   }
 }
 
+function displaySelectedAccount()
+{
+  if(account1)
+  {
+    let ControlVariable
+
+    if(int(datastore[account1].creationDate[3]) < 10)
+    {
+      ControlVariable = "0";
+    }
+    else
+    {
+      ControlVariable = "";
+    }
+
+    AccountNameInfo.html(datastore[account1].accountFirstName + " " + datastore[account1].accountLastName);
+    AccountNumberInfo.html(datastore[account1].bankAddress + datastore[account1].accountNumber);
+    AccountcprNumberInfo.html(datastore[account1].cprNumber)
+    AccountAddressInfo.html(datastore[account1].address)
+    AccountCreationdateInfo.html(datastore[account1].creationDate[0] + ":" + datastore[account1].creationDate[1] + " / " + datastore[account1].creationDate[2] + "-" + ControlVariable + datastore[account1].creationDate[3] + "-" + datastore[account1].creationDate[4])
+    AccountHistoryInfo.html(datastore[account1].accountHistory)
+  }
+}
+
+function deleteSelectedAccount() {
+  if (account1) {
+    delete datastore[account1];
+    account1 = undefined;
+  }
+}
 
 function checkInputs(FirstName, LastName, CPRNumber, Adress)
 {
@@ -77,6 +108,26 @@ function checkInputs(FirstName, LastName, CPRNumber, Adress)
   {
     CreateAccountButton.elt.disabled = false;
     errorOutput.hide();
+  }
+
+  if (!account1)
+  {
+    deleteAccountButton.hide()
+    AccountNameInfo.hide()
+    AccountNumberInfo.hide()
+    AccountcprNumberInfo.hide()
+    AccountAddressInfo.hide()
+    AccountCreationdateInfo.hide()
+    AccountHistoryInfo.hide()
+  }
+  else
+  {
+    deleteAccountButton.show();
+    AccountNameInfo.show()
+    AccountNumberInfo.show()
+    AccountcprNumberInfo.show()
+    AccountAddressInfo.show()
+    AccountCreationdateInfo.show()
   }
 
   if (millis() - startTime >= waitTime) {
@@ -158,6 +209,49 @@ function GUIApplications()
   errorOutput.style('font-size', '30px');
   errorOutput.style('color', 'red');
   errorOutput.hide();
+
+  deleteAccountButton = createButton("Delete Account")
+  deleteAccountButton.position(width/2.15, height)
+  deleteAccountButton.size(width/3.65, height/15)
+  deleteAccountButton.class("button-24");
+  deleteAccountButton.hide();
+  deleteAccountButton.mousePressed(deleteSelectedAccount);
+
+  AccountNameInfo = createP("Name");
+  AccountNameInfo.position(width/1.73, height/13)
+  AccountNameInfo.style('font-size', '30px');
+  AccountNameInfo.style('color', 'white');
+  //AccountNameInfo.hide();
+
+  AccountNumberInfo = createP("Account Number");
+  AccountNumberInfo.position(width/1.73, height/7)
+  AccountNumberInfo.style('font-size', '10px');
+  AccountNumberInfo.style('color', 'white');
+  //AccountNumberInfo.hide();
+
+  AccountcprNumberInfo = createP("CPR number");
+  AccountcprNumberInfo.position(width/2.25, height/5)
+  AccountcprNumberInfo.style('font-size', '30px');
+  AccountcprNumberInfo.style('color', 'white');
+  //AccountcprNumberInfo.hide();
+
+  AccountAddressInfo = createP("Address");
+  AccountAddressInfo.position(width/2.25, height/4)
+  AccountAddressInfo.style('font-size', '30px');
+  AccountAddressInfo.style('color', 'white');
+  //AccountcprNumberInfo.hide();
+
+  AccountCreationdateInfo = createP("Hour:Minute / Day-Month-Year");
+  AccountCreationdateInfo.position(width/2.25, height/3.3)
+  AccountCreationdateInfo.style('font-size', '30px');
+  AccountCreationdateInfo.style('color', 'white');
+  //AccountCreationdateInfo.hide();
+
+  AccountHistoryInfo = createP("History");
+  AccountHistoryInfo.position(width/2.25, height/2.8)
+  AccountHistoryInfo.style('font-size', '30px');
+  AccountHistoryInfo.style('color', 'white');
+  //AccountHistoryInfo.hide();
 }
 
 function CreateButtonFunction() 
@@ -209,6 +303,14 @@ function GUI()
 }
 
 function mouseWheel(event) {
-  // Adjust the scroll position based on the mouse wheel event
   scrollPos += event.delta;
+}
+
+function mousePressed()
+{
+  if(mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height)
+  {
+    account1 = undefined;
+    console.log(account1)
+  }
 }
