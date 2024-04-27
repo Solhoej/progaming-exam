@@ -9,6 +9,13 @@ let AdressInput;
 let errorOutput;
 let deleteAccountButton;
 
+let MoneyAccountInput;
+
+let AddMoneyButton;
+let SubMoneyButton;
+
+let backgroundsMenuButton;
+
 let startTime;
 let waitTime = 5000;
 
@@ -48,19 +55,26 @@ function draw()
   GUI();
   checkInputs(FirstNameBar.value(), LastNameBar.value(), FakePersonalNumber.value(), AdressInput.value());
   displaySelectedAccount();
+  BackgroundsMenu();
+  updateScrollPos();
 }
 
 function displayDatastoreContent(posY=60) {
   //we will declare what the user has searched
   let searchString = SearchBar.value().toLowerCase().replace(/\s/g, '');
+  let searchStringNumber = SearchBar.value().toLowerCase().replace(/\s/g, '');
+  let searchStringAddress = SearchBar.value().toLowerCase().replace(/\s/g, '');
   //we will loop through all our keys
   for (let key in datastore) {
     //declare current account
     let account = datastore[key];
     //we will declare what we want to search for
     let fullName = `${account.accountLastName}${account.accountFirstName}`.toLowerCase().replace(/\s/g, '');
+    let accountNumber = account.accountNumber.toLowerCase().replace(/\s/g, '');
+    let accountAddress = account.address.toLowerCase().replace(/\s/g, '');
+
     //if what we want to search for has whatever the user has searched then
-    if (fullName.includes(searchString)) {
+    if (fullName.includes(searchString) || accountNumber.includes(searchStringNumber) || accountAddress.includes(searchStringAddress)) {
       //we will declare the accounts info and put the string together
       let accountInfo = `Account Number: ${key}\n`;
       accountInfo += `Name: ${account.accountLastName} ${account.accountFirstName}\n`;
@@ -91,7 +105,9 @@ function displaySelectedAccount()
   if(account1)
   {
     //this is just to check if our month is less than 10
-    let ControlVariable
+    let ControlVariable;
+    let ControlVariable2;
+    let ControlVariable3;
 
     if(int(datastore[account1].creationDate[3]) < 10)
     {
@@ -102,12 +118,30 @@ function displaySelectedAccount()
       ControlVariable = "";
     }
 
+    if(int(datastore[account1].creationDate[0]) < 10)
+    {
+      ControlVariable2 = "0";
+    }
+    else
+    {
+      ControlVariable2 = "";
+    }
+
+    if(int(datastore[account1].creationDate[1]) < 10)
+    {
+      ControlVariable3 = "0";
+    }
+    else
+    {
+      ControlVariable3 = "";
+    }
+
     //we will change the html of our dom objects to the accounts info
     AccountNameInfo.html(datastore[account1].accountFirstName + " " + datastore[account1].accountLastName);
     AccountNumberInfo.html(datastore[account1].bankAddress + datastore[account1].accountNumber);
     AccountcprNumberInfo.html(datastore[account1].cprNumber)
     AccountAddressInfo.html(datastore[account1].address)
-    AccountCreationdateInfo.html(datastore[account1].creationDate[0] + ":" + datastore[account1].creationDate[1] + " / " + datastore[account1].creationDate[2] + "-" + ControlVariable + datastore[account1].creationDate[3] + "-" + datastore[account1].creationDate[4])
+    AccountCreationdateInfo.html(ControlVariable2 + datastore[account1].creationDate[0] + ":" + ControlVariable3 + datastore[account1].creationDate[1] + " / " + datastore[account1].creationDate[2] + "-" + ControlVariable + datastore[account1].creationDate[3] + "-" + datastore[account1].creationDate[4])
     AccountHistoryInfo.html(datastore[account1].accountHistory)
   }
 }
@@ -151,6 +185,10 @@ function checkInputs(FirstName, LastName, CPRNumber, Adress)
     AccountAddressInfo.hide()
     AccountCreationdateInfo.hide()
     AccountHistoryInfo.hide()
+    MoneyAccountInput.hide()
+    AddMoneyButton.hide()
+    SubMoneyButton.hide()
+    AccountBalance.hide()
   }
   else
   {
@@ -160,6 +198,13 @@ function checkInputs(FirstName, LastName, CPRNumber, Adress)
     AccountcprNumberInfo.show()
     AccountAddressInfo.show()
     AccountCreationdateInfo.show()
+    MoneyAccountInput.show();
+    AddMoneyButton.show()
+    SubMoneyButton.show()
+    AccountBalance.show();
+
+    AccountBalance.html("Balance: " + int(datastore[account1].balance))
+
   }
 
   //will wait 3000 milliseconds(3 seconds) then change the dom
@@ -220,34 +265,34 @@ function GUIApplications()
 
   LastNameBar = createInput();
   LastNameBar.attribute("placeholder", "Enter last name here")
-  LastNameBar.position(width/1.25, height/4)
+  LastNameBar.position(width/1.25, height/3.8)
   LastNameBar.size(width/3.9, height/15)
   LastNameBar.class("inputForm");
   LastNameBar.style('font-size', '20px');
 
   FakePersonalNumber = createInput();
   FakePersonalNumber.attribute("placeholder", "Enter CPR-Number")
-  FakePersonalNumber.position(width/1.25, height/3)
+  FakePersonalNumber.position(width/1.25, height/2.75)
   FakePersonalNumber.size(width/3.9, height/15)
   FakePersonalNumber.class("inputForm");
   FakePersonalNumber.style('font-size', '20px');
 
   AdressInput = createInput();
   AdressInput.attribute("placeholder", "Enter Adress Name")
-  AdressInput.position(width/1.25, height/2.4)
+  AdressInput.position(width/1.25, height/2.15)
   AdressInput.size(width/3.9, height/15)
   AdressInput.class("inputForm");
   AdressInput.style('font-size', '20px');
 
   CreateAccountButton = createButton("Create Account")
-  CreateAccountButton.position(width/1.25, height/2)
+  CreateAccountButton.position(width/1.25, height/1.75)
   CreateAccountButton.size(width/3.65, height/15)
   CreateAccountButton.class("button-64");
   CreateAccountButton.elt.disabled = true;
   CreateAccountButton.mousePressed(CreateButtonFunction);
 
   errorOutput = createP("You need to fill out all of the forms!");
-  errorOutput.position(width/1.25, height/1.8)
+  errorOutput.position(width/1.25, height/1.65)
   errorOutput.style('font-size', '30px');
   errorOutput.style('color', 'red');
   errorOutput.hide();
@@ -294,6 +339,57 @@ function GUIApplications()
   AccountHistoryInfo.style('font-size', '30px');
   AccountHistoryInfo.style('color', 'white');
   //AccountHistoryInfo.hide();
+
+  backgroundsMenuButton = createButton("<")
+  backgroundsMenuButton.position(width * 1.17 ,height/2)
+  backgroundsMenuButton.class("button-64");
+  backgroundsMenuButton.style('font-size', '30px');
+  backgroundsMenuButton.style('color', 'white');
+  backgroundsMenuButton.mousePressed(OpenMenu);
+
+  MoneyAccountInput = createInput(0);
+  MoneyAccountInput.attribute("placeholder", "Enter amount");
+  MoneyAccountInput.position(width/1.75, height/1.2);
+  MoneyAccountInput.class("inputForm");
+  MoneyAccountInput.size(75, 30)
+  MoneyAccountInput.style('font-size', '30px');
+  MoneyAccountInput.style('color', 'white');
+
+  AddMoneyButton = createButton("+")
+  AddMoneyButton.position(width/1.57 ,height/1.2)
+  AddMoneyButton.class("button-64");
+  AddMoneyButton.size(75, 45)
+  AddMoneyButton.style('font-size', '30px');
+  AddMoneyButton.style('color', 'white');
+  AddMoneyButton.mousePressed(AddMoney);
+
+  SubMoneyButton = createButton("-")
+  SubMoneyButton.position(width/1.915 ,height/1.2)
+  SubMoneyButton.class("button-24");
+  SubMoneyButton.size(75, 45)
+  SubMoneyButton.style('font-size', '30px');
+  SubMoneyButton.style('color', 'white');
+  SubMoneyButton.mousePressed(SubMoney);
+
+  AccountBalance = createP(0)
+  AccountBalance.position(width/1.67, height/2)
+  AccountBalance.style('font-size', '30px');
+  AccountBalance.style('color', 'white');
+
+}
+
+function AddMoney()
+{
+  datastore[account1].balance += int(MoneyAccountInput.value());
+  MoneyAccountInput.value(0);
+  localStorage.setItem('datastore', JSON.stringify(datastore));
+}
+
+function SubMoney()
+{
+  datastore[account1].balance -= int(MoneyAccountInput.value());
+  MoneyAccountInput.value(0);
+  localStorage.setItem('datastore', JSON.stringify(datastore));
 }
 
 function CreateButtonFunction() 
@@ -342,8 +438,36 @@ function GUI()
   pop();
 }
 
+let menuState = true;
+let targetX;
+
+function OpenMenu()
+{
+  menuState = !menuState;
+
+  targetX = menuState ? width * 1.17 : width * 1.07;
+}
+
+function BackgroundsMenu()
+{
+  if(!menuState)
+  {
+    backgroundsMenuButton.position(lerp(backgroundsMenuButton.x, width * 1.07, 0.1), height / 2);
+  }
+  else
+  {
+    backgroundsMenuButton.position(lerp(backgroundsMenuButton.x, width * 1.17, 0.1), height / 2);
+  }
+}
+
+let targetScrollPos = 0;
+
 function mouseWheel(event) {
-  scrollPos += event.delta;
+  targetScrollPos += event.delta;
+}
+
+function updateScrollPos() {
+  scrollPos = lerp(scrollPos, targetScrollPos, 0.1);
 }
 
 function mousePressed()
