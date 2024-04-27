@@ -313,4 +313,16 @@ function mousePressed()
     account1 = undefined;
     console.log(account1)
   }
+
+  if (mouseX < width / 3 && mouseY > 60) {
+    let posY = 60 - scrollPos;
+    for (let key in datastore) {
+      if (mouseY > posY && mouseY < posY + 140) {
+        account1 = key;
+        return; // Exit the loop once account1 is set
+      }
+      posY += 140;
+    }
+  }
+
 }
