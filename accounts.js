@@ -20,6 +20,8 @@ class Accounts
 
     accountNumberGeneration() 
     {
+        //Generate random floating point number multiplied by 10000, to create a unique 4 digit number
+        //padStart adds zero's to the string until it becomes a 4 digit number
         this.accountNumber = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
 
         return this.bankAddress + this.accountNumber;
@@ -27,6 +29,7 @@ class Accounts
 
     accountRegistration()
     {
+        //Define an object which stores strings of information, under their own property
         this.account = 
         {
             name: `${this.accountLastName} ${this.accountFirstName}`, 
