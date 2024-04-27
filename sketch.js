@@ -27,7 +27,7 @@ function displayDatastoreContent(posY=60) {
   for (let key in datastore) {
     let account = datastore[key];
     let accountInfo = `Account Number: ${key}\n`;
-    accountInfo += `Name: ${account.accountFirstName} ${account.accountLastName}\n`;
+    accountInfo += `Name: ${account.accountLastName} ${account.accountFirstName}\n`;
     accountInfo += `CPR Number: ${account.cprNumber}\n`;
     accountInfo += `Address: ${account.address}\n`;
     //accountInfo += `Balance: ${account.balance}\n`;
