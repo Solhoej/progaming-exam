@@ -14,6 +14,8 @@ class Accounts
         this.accountHistory = {"1":""};
         this.account;
 
+        this.isAdmin = false;
+
         this.savingsAccounts = [];
         this.creationDate = [hour(), minute(), day(), month(), year()]
     }

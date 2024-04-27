@@ -14,6 +14,8 @@ let MoneyAccountInput;
 let AddMoneyButton;
 let SubMoneyButton;
 
+let SendMoneyButton;
+
 let backgroundsMenuButton;
 
 let startTime;
@@ -25,6 +27,8 @@ let b1 = 60;
 
 //decides which accounts to be displayed in the middle display
 let account1;
+
+let targetedAccount;
 
 let hideAlpha = 0;
 
@@ -189,6 +193,7 @@ function checkInputs(FirstName, LastName, CPRNumber, Adress)
     AddMoneyButton.hide()
     SubMoneyButton.hide()
     AccountBalance.hide()
+    SendMoneyButton.hide()
   }
   else
   {
@@ -202,6 +207,7 @@ function checkInputs(FirstName, LastName, CPRNumber, Adress)
     AddMoneyButton.show()
     SubMoneyButton.show()
     AccountBalance.show();
+    SendMoneyButton.show();
 
     AccountBalance.html("Balance: " + int(datastore[account1].balance))
 
@@ -376,6 +382,14 @@ function GUIApplications()
   AccountBalance.style('font-size', '30px');
   AccountBalance.style('color', 'white');
 
+  SendMoneyButton = createButton("Send")
+  SendMoneyButton.position(width/1.915 ,height/1.1)
+  SendMoneyButton.class("button-642");
+  SendMoneyButton.size(260, 40)
+  SendMoneyButton.style('font-size', '25px');
+  SendMoneyButton.style('color', 'white');
+  //SendMoneyButton.mousePressed(SendMoney);
+
 }
 
 function AddMoney()
@@ -390,6 +404,16 @@ function SubMoney()
   datastore[account1].balance -= int(MoneyAccountInput.value());
   MoneyAccountInput.value(0);
   localStorage.setItem('datastore', JSON.stringify(datastore));
+}
+
+function OpenTransactionMenu()
+{
+
+}
+
+function SendMoney()
+{
+
 }
 
 function CreateButtonFunction() 
