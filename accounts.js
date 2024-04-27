@@ -13,6 +13,8 @@ class Accounts
         this.accountNumber;
         this.accountHistory = {};
         this.account;
+
+        this.savingsAccounts = [];
     }
 
     accountNumberGeneration() 
