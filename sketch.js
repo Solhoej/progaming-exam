@@ -12,6 +12,10 @@ let deleteAccountButton;
 let startTime;
 let waitTime = 5000;
 
+let r1 = 60;
+let g1 = 60;
+let b1 = 60;
+
 //decides which accounts to be displayed in the middle display
 let account1;
 
@@ -23,6 +27,13 @@ function setup()
 {
   createCanvas(windowWidth/1.2, windowHeight/1.2);
   background(127, 94, 145, 25);
+
+  let savedData = localStorage.getItem('datastore');
+  if (savedData) 
+  {
+    datastore = JSON.parse(savedData);
+  }
+
   GUIApplications();
   console.log(Object.keys(datastore).length);
 }
@@ -45,7 +56,7 @@ function displayDatastoreContent(posY=60) {
       accountInfo += `CPR Number: ${account.cprNumber}\n`;
       accountInfo += `Address: ${account.address}\n`;
       
-      fill(60, 60, 60);
+      fill(r1, g1, b1);
       stroke(180);
       strokeWeight(1);
       rect(width/60 + 20, posY - 20, (width/3) - 120, 90);
@@ -90,6 +101,8 @@ function deleteSelectedAccount() {
     delete datastore[account1];
     account1 = undefined;
   }
+
+  localStorage.setItem('datastore', JSON.stringify(datastore));
 }
 
 function checkInputs(FirstName, LastName, CPRNumber, Adress)
@@ -152,9 +165,13 @@ function createAccount(FirstName, LastName, CPRNumber, Address, Balance=0)
     }
   }
 
+  scrollPos = 0;
+
   //Add the account to the datastore with the accountNumber as the keycode
   datastore[key] = newAccount;
   account1 = key;
+
+  localStorage.setItem('datastore', JSON.stringify(datastore));
   print(datastore);
   print(account1);
 }
@@ -273,9 +290,6 @@ function Scrollframe(x=0, y=0) {
   fill(53, 50, 61);
   stroke(150);
   rect(-x, -y, width/3, height);
-  let backdrop = rect(0, 0, (width/3) - x*2, height - 80);
-  fill(255);
-  let scroller = rect(width/3.3, 0, 10, (height - 80) - Object.keys(datastore).length, 90);
   noFill();
   // Adjust the posY parameter based on the scroll position
   displayDatastoreContent(60 - scrollPos);
