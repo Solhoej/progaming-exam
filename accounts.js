@@ -15,6 +15,7 @@ class Accounts
         this.account;
 
         this.savingsAccounts = [];
+        this.creationDate = [hour(), minute(), day(), month(), year()]
     }
 
     accountNumberGeneration() 
@@ -31,7 +32,10 @@ class Accounts
             name: `${this.accountLastName} ${this.accountFirstName}`, 
             cprNumber: this.cprNumber.toString(),
             address: this.address,
-            accountNumber: this.accountNumberGeneration()
+            accountNumber: this.accountNumberGeneration(),
+            savingsAccounts: this.savingsAccounts,
+            accountHistory: this.accountHistory,
+            creationDate: this.creationDate
         }
     }
 }

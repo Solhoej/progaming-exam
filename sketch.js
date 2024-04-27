@@ -23,6 +23,29 @@ function draw()
   checkInputs(FirstNameBar.value(), LastNameBar.value(), FakePersonalNumber.value(), AdressInput.value());
 }
 
+function displayDatastoreContent(posY=60) {
+  for (let key in datastore) {
+    let account = datastore[key];
+    let accountInfo = `Account Number: ${key}\n`;
+    accountInfo += `Name: ${account.accountFirstName} ${account.accountLastName}\n`;
+    accountInfo += `CPR Number: ${account.cprNumber}\n`;
+    accountInfo += `Address: ${account.address}\n`;
+    //accountInfo += `Balance: ${account.balance}\n`;
+
+    fill(60, 60, 60);
+    stroke(180)
+    rect(width/60 + 20, posY - 20, (width/3) - 120, 90)
+
+    stroke(180)
+    strokeWeight(1);
+    textAlign(LEFT);
+    textSize(16);
+    fill(255);
+    text(accountInfo, width / 50 + 20, posY);
+    posY += 120;
+  }
+}
+
 function checkInputs(FirstName, LastName, CPRNumber, Adress)
 {
   let firstName = FirstName
@@ -57,7 +80,9 @@ function createAccount(FirstName, LastName, CPRNumber, Address, Balance=0)
 
   //Add the account to the datastore with the accountNumber as the keycode
   datastore[key] = newAccount;
+  account1 = key;
   print(datastore);
+  print(account1);
 }
 
 function GUIApplications()
@@ -118,9 +143,7 @@ function Scrollframe(x=0, y=0)
   let backdrop = rect(0, 0, (width/3) - x*2, height - 80)
   fill(255);
   let scroller = rect(width/3.3, 0, 10, (height - 80), 90);
-
-  //buttons
-
+  displayDatastoreContent();
   pop();
 }
 
