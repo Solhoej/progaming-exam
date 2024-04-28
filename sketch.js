@@ -61,6 +61,12 @@ function draw()
   displaySelectedAccount();
   BackgroundsMenu();
   updateScrollPos();
+
+  if(account1 && datastore[account1].cprNumber == "Admin")
+  {
+    datastore[account1].isAdmin = true;
+  }
+
 }
 
 function displayDatastoreContent(posY=60) {
@@ -85,7 +91,20 @@ function displayDatastoreContent(posY=60) {
       accountInfo += `CPR Number: ${account.cprNumber}\n`;
       accountInfo += `Address: ${account.address}\n`;
       
-      fill(r1, g1, b1);
+      //change the color of the button depending on the users behavior
+      if(mouseX > (width/60) + 40 && mouseX < (width/60 + 20) + (width/3) - 95 && mouseY > posY + 50 && mouseY < posY + 145)
+      {
+        fill(44,48,61);
+        if(mouseIsPressed)
+        {
+          fill(40, 45, 48)
+        }
+      }
+      else
+      {
+        fill(r1, g1, b1);
+      }
+
       stroke(180);
       strokeWeight(1);
       rect(width/60 + 20, posY - 20, (width/3) - 120, 90);
@@ -203,9 +222,21 @@ function checkInputs(FirstName, LastName, CPRNumber, Adress)
     AccountcprNumberInfo.show()
     AccountAddressInfo.show()
     AccountCreationdateInfo.show()
-    MoneyAccountInput.show();
-    AddMoneyButton.show()
-    SubMoneyButton.show()
+
+    if(datastore[account1].isAdmin)
+    {
+      MoneyAccountInput.show();
+      AddMoneyButton.show();
+      SubMoneyButton.show();
+    }
+    else
+    {
+      MoneyAccountInput.hide()
+      AddMoneyButton.hide()
+      SubMoneyButton.hide()
+      AccountBalance.hide()
+    }
+
     AccountBalance.show();
     SendMoneyButton.show();
 
@@ -512,5 +543,4 @@ function mousePressed()
       posY += 140;
     }
   }
-
 }

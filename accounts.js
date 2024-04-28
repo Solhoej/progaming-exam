@@ -43,4 +43,10 @@ class Accounts
             creationDate: this.creationDate
         }
     }
+
+    adminRegistration(value=false)
+    {
+        this.isAdmin = value;
+    }
+
 }
