@@ -55,7 +55,7 @@ function setup()
 
 function draw() 
 {
-  //making everything word repeatedly
+  //making everything work repeatedly
   GUI();
   checkInputs(FirstNameBar.value(), LastNameBar.value(), FakePersonalNumber.value(), AdressInput.value());
   displaySelectedAccount();
