@@ -240,7 +240,7 @@ function checkInputs(FirstName, LastName, CPRNumber, Adress)
     AccountBalance.show();
     SendMoneyButton.show();
 
-    AccountBalance.html("Balance: " + int(datastore[account1].balance))
+    AccountBalance.html("Balance: " + datastore[account1].balance)
 
   }
 
