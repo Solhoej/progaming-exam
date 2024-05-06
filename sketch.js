@@ -423,13 +423,6 @@ function GUIApplications()
   SendMoneyButton.style('color', 'white');
   SendMoneyButton.mousePressed(OpenTransactionMenu);
 
-<<<<<<< HEAD
-
-
-
-
-
-
   backgroundSelect = createImg("assets/morten.jpg");
   backgroundSelect.position(width*1.1, 0);
   backgroundSelect.size(140, height);
@@ -485,12 +478,10 @@ function GUIApplications()
     document.body.style.backgroundImage = "url('assets/Kunst.jpg')";
   });
 
-=======
   SendMoneySelect = createSelect('Select account');
   SendMoneySelect.size(300);
   SendMoneySelect.position(width, height);
   SendMoneySelect.hide();
->>>>>>> 32ccf8cfc2e6752302c9bfb7404311bc1e4bedb9
 }
 
 function AddMoney()
