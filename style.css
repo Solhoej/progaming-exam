@@ -8,6 +8,7 @@ html, body {
   background-color: rgb(40, 40, 40);
   background-image: url('assets/Hut.gif');
   background-size: cover;
+  cursor: none;
 }
 
 canvas {
@@ -15,16 +16,19 @@ canvas {
   border: 5px solid rgb(255, 255, 255);
   flex: none;
   border-radius: 45px 0 45px 0; /* Top-left and bottom-right corners rounded */
+  cursor: none;
 }
 
 #canvas-container {
   position: absolute;
   top: 50px;
   left: 50px;
+  cursor: none;
 }
 
 /* CSS */
 .button-64 {
+  cursor: none;
   background: #64ff71;
   border: 1px solid #64ff71;
   border-radius: 6px;
@@ -51,23 +55,47 @@ canvas {
 
 .button-64:hover,
 .button-64:active {
+  cursor: none;
   background-color: initial;
   background-position: 0 0;
   color: #64ff71;
+}
+
+.button-64:hover .cursor,
+.button-642:hover .cursor {
+  animation: cursorAnim3 .3s forwards; /* Apply the expand animation when hovering over the buttons */
+  border: 1px solid red;
 }
 
 .button-64:active {
   opacity: .5;
 }
 
+.custom-select {
+  cursor: none;
+  background-color: #f1f1f127;
+  border: 1px solid #4a5670;
+  color: #e9e9e9;
+  padding: 8px 20px;
+  font-size: 18px;
+  border-radius: 9px;
+}
+
+/* Style for the options within the select dropdown */
+.custom-select option {
+  cursor: none;
+  background-color: #494949;
+  color: #ffffff;
+}
+
 .button-642 {
+  cursor: none;
   background: #6495ff;
   border: 1px solid #6495ff;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
   box-sizing: border-box;
   color: #000000;
-  cursor: pointer;
   display: inline-block;
   font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
   font-size: 16px;
@@ -87,17 +115,19 @@ canvas {
 
 .button-642:hover,
 .button-642:active {
+  cursor: none;
   background-color: initial;
   background-position: 0 0;
   color: #64ff71;
 }
 
 .button-642:active {
+  cursor: none;
   opacity: .5;
 }
 
 .inputForm{
-
+  cursor: none;
   padding: 6px 12px;
   background: rgb(31, 32, 35);
   border: 1px solid rgb(60, 63, 68);
@@ -116,6 +146,7 @@ canvas {
 }
 
 .button-24 {
+  cursor: none;
   background: #FF4742;
   border: 1px solid #FF4742;
   border-radius: 6px;
@@ -142,11 +173,106 @@ canvas {
 
 .button-24:hover,
 .button-24:active {
+  cursor: none;
   background-color: initial;
   background-position: 0 0;
   color: #FF4742;
 }
 
 .button-24:active {
+  cursor: none;
   opacity: .5;
+}
+
+
+.cursor {
+  cursor: none;
+  width: 32px; /* Adjust size as needed */
+  height: 32px; /* Adjust size as needed */
+  border: 1px solid white;
+  border-radius: 50%;
+  position: absolute;
+  /*transition-duration: 200ms;
+  transition-timing-function: ease-out;*/
+  animation: cursorAnim .5s infinite alternate;
+
+  /*background-image: url('assets/CustomCursor.png');*/
+  /*background-size: cover; */
+  pointer-events: none; /* Ensure the cursor doesn't interfere with mouse events */
+  z-index: 9999;
+}
+
+.cursor::after {
+  cursor: none;
+  content: "";
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  border: 8px solid gray;
+  border-radius: 50%;
+  opacity: .5;
+  top: -8px;
+  left: -8px;
+  animation: cursorAnim4 .5s, infinite alternate;
+}
+
+@keyframes cursorAnim {
+  from {
+    transform: scale(1);
+  }
+  to{
+    transform: scale(.7);
+  }
+}
+
+@keyframes cursorAnim4 {
+  from {
+    transform: scale(1);
+  }
+  to{
+    transform: scale(.2);
+  }
+}
+
+@keyframes cursorAnim3 {
+  0% {
+    transform: scale(1);
+  }
+  30%{
+    transform: scale(0.2);
+  }
+  100%{
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes cursorAnim5 {
+  0% {
+    transform: scale(1);
+  }
+  30%{
+    transform: scale(2);
+  }
+  50%{
+    transform: scale(1);
+  }
+  70%{
+    transform: scale(2);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+.expand {
+  cursor: none;
+  animation: cursorAnim3 .3s, forwards;
+  border: 1px solid red;
+}
+
+.hover:hover {
+  cursor: none;
+  animation: cursorAnim5 .2s forwards;
+  border: 1px solid rgb(76, 125, 216);
 }

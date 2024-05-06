@@ -15,6 +15,45 @@
 
   <body>
     <div id="canvas-container"></div>
+    <div class="cursor"></div>
+
+    <script>
+      const cursor = document.querySelector(".cursor");
+
+      let currentX = 0;
+      let currentY = 0;
+      document.addEventListener("mousemove", e => {
+        const targetX = e.pageX - 32 / 2; // Adjusted for cursor size
+        const targetY = e.pageY - 32 / 2; // Adjusted for cursor size
+
+        currentX = lerp(currentX, targetX, 0.3);
+        currentY = lerp(currentY, targetY, 0.3);
+        cursor.setAttribute("style", `top: ${currentY}px; left: ${currentX}px;`);
+      });
+
+      document.addEventListener("click", () => {
+        cursor.classList.add("expand");
+
+        setTimeout(() => {
+          cursor.classList.remove("expand");
+        }, 300)
+      })
+
+      document.querySelectorAll('.hover').forEach(element => {
+        element.addEventListener('mouseover', () => {
+            cursor.classList.add('hovering');
+        });
+    
+        element.addEventListener('mouseout', () => {
+            cursor.classList.remove('hovering');
+        });
+      });
+    
+
+    </script>
+    
+    
+
     <script src="sketch.js"></script>
   </body>
 </html>
