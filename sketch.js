@@ -18,6 +18,8 @@ let SendMoneyButton;
 
 let backgroundsMenuButton;
 
+let SendMoneySelect;
+
 let startTime;
 let waitTime = 5000;
 
@@ -66,7 +68,6 @@ function draw()
   {
     datastore[account1].isAdmin = true;
   }
-
 }
 
 function displayDatastoreContent(posY=60) {
@@ -419,8 +420,12 @@ function GUIApplications()
   SendMoneyButton.size(260, 40)
   SendMoneyButton.style('font-size', '25px');
   SendMoneyButton.style('color', 'white');
-  //SendMoneyButton.mousePressed(SendMoney);
+  SendMoneyButton.mousePressed(OpenTransactionMenu);
 
+  SendMoneySelect = createSelect('Select account');
+  SendMoneySelect.size(300);
+  SendMoneySelect.position(width, height);
+  SendMoneySelect.hide();
 }
 
 function AddMoney()
@@ -439,7 +444,14 @@ function SubMoney()
 
 function OpenTransactionMenu()
 {
+  print('sigma');
+  for (let key in datastore) 
+  {
+    let currentAccount = datastore[key];
+    SendMoneySelect.option(currentAccount.accountNumber);
+  }
 
+  SendMoneySelect.show();
 }
 
 function SendMoney()
