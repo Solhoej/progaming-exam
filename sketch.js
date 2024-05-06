@@ -30,11 +30,12 @@ let account1;
 
 let targetedAccount;
 
+let backgroundSelect;
+
 let hideAlpha = 0;
 
 //determines the scroll position
 let scrollPos = 0;
-
 function setup() 
 {
   createCanvas(windowWidth/1.2, windowHeight/1.2);
@@ -50,7 +51,7 @@ function setup()
 
   //setting up guis
   GUIApplications();
-  console.log(Object.keys(datastore).length);
+  //console.log(Object.keys(datastore).length);
 }
 
 function draw() 
@@ -97,7 +98,7 @@ function displayDatastoreContent(posY=60) {
         fill(44,48,61);
         if(mouseIsPressed)
         {
-          fill(40, 45, 48)
+          fill(40, 45, 48);
         }
       }
       else
@@ -421,6 +422,67 @@ function GUIApplications()
   SendMoneyButton.style('color', 'white');
   //SendMoneyButton.mousePressed(SendMoney);
 
+
+
+
+
+
+
+  backgroundSelect = createImg("assets/morten.jpg");
+  backgroundSelect.position(width*1.1, 0);
+  backgroundSelect.size(140, height);
+
+  backgroundButton1Img = createImg("assets/Hut.gif");
+  backgroundButton1Img.size(145, 145);
+  backgroundButton1 = createButton('');
+  backgroundButton1.size(145, 145);
+  backgroundButton1.position(width*1.1, 0);
+  backgroundButton1.elt.style.opacity = '0';
+  backgroundButton1.mousePressed(function() {
+    document.body.style.backgroundImage = "url('assets/Hut.gif')";
+  });
+
+  backgroundButton2Img = createImg("assets/pokemon.gif");
+  backgroundButton2Img.size(145, 145);
+  backgroundButton2 = createButton('');
+  backgroundButton2.size(145, 145);
+  backgroundButton2.position(width*1.1, 0);
+  backgroundButton2.elt.style.opacity = '0';
+  backgroundButton2.mousePressed(function() {
+    document.body.style.backgroundImage = "url('assets/pokemon.gif')";
+    document.body.style.backgroundSize = "cover";
+  });
+
+  backgroundButton3Img = createImg("assets/sunflower.gif");
+  backgroundButton3Img.size(145, 145);
+  backgroundButton3 = createButton('');
+  backgroundButton3.size(145, 145);
+  backgroundButton3.position(width*1.1, 0);
+  backgroundButton3.elt.style.opacity = '0';
+  backgroundButton3.mousePressed(function() {
+    document.body.style.backgroundImage = "url('assets/sunflower.gif')";
+  });
+
+  backgroundButton4Img = createImg("assets/trees.gif");
+  backgroundButton4Img.size(145, 145);
+  backgroundButton4 = createButton('');
+  backgroundButton4.size(145, 145);
+  backgroundButton4.position(width*1.1, 0);
+  backgroundButton4.elt.style.opacity = '0';
+  backgroundButton4.mousePressed(function() {
+    document.body.style.backgroundImage = "url('assets/trees.gif')";
+  });
+
+  backgroundButton5Img = createImg("assets/Kunst.jpg");
+  backgroundButton5Img.size(145, 145);
+  backgroundButton5 = createButton('');
+  backgroundButton5.size(145, 145);
+  backgroundButton5.position(width*1.1, 0);
+  backgroundButton5.elt.style.opacity = '0';
+  backgroundButton5.mousePressed(function() {
+    document.body.style.backgroundImage = "url('assets/Kunst.jpg')";
+  });
+
 }
 
 function AddMoney()
@@ -508,11 +570,45 @@ function BackgroundsMenu()
   if(!menuState)
   {
     backgroundsMenuButton.position(lerp(backgroundsMenuButton.x, width * 1.07, 0.1), height / 2);
+    backgroundSelect.position(lerp(backgroundSelect.x, width * 1.1, 0.1), height/10);
+    
+    backgroundButton1.position(lerp(backgroundSelect.x, width * 1.1, 0.1), height/10);
+    backgroundButton1Img.position(lerp(backgroundSelect.x, width * 1.1, 0.1), height/10);
+
+    backgroundButton2.position(lerp(backgroundSelect.x, width * 1.1, 0.1), height/3.5);
+    backgroundButton2Img.position(lerp(backgroundSelect.x, width * 1.1, 0.1), height/3.5);
+
+    backgroundButton3.position(lerp(backgroundSelect.x, width * 1.1, 0.1), height/2.12);
+    backgroundButton3Img.position(lerp(backgroundSelect.x, width * 1.1, 0.1), height/2.12);
+
+    backgroundButton4.position(lerp(backgroundSelect.x, width * 1.1, 0.1), height/1.52);
+    backgroundButton4Img.position(lerp(backgroundSelect.x, width * 1.1, 0.1), height/1.52);
+
+    backgroundButton5.position(lerp(backgroundSelect.x, width * 1.1, 0.1), height/1.184);
+    backgroundButton5Img.position(lerp(backgroundSelect.x, width * 1.1, 0.1), height/1.184);
+
   }
   else
   {
     backgroundsMenuButton.position(lerp(backgroundsMenuButton.x, width * 1.17, 0.1), height / 2);
+    backgroundSelect.position(lerp(backgroundSelect.x, width * 1.2, 0.1), height/10);
+    backgroundButton1.position(lerp(backgroundSelect.x, width * 1.2, 0.1), height/10);
+    backgroundButton1Img.position(lerp(backgroundSelect.x, width * 1.2, 0.1), height/10);
+
+    backgroundButton2.position(lerp(backgroundSelect.x, width * 1.2, 0.1), height/3.5);
+    backgroundButton2Img.position(lerp(backgroundSelect.x, width * 1.2, 0.1), height/3.5);
+
+    backgroundButton3.position(lerp(backgroundSelect.x, width * 1.2, 0.1), height/2.12);
+    backgroundButton3Img.position(lerp(backgroundSelect.x, width * 1.2, 0.1), height/2.12);
+
+    backgroundButton4.position(lerp(backgroundSelect.x, width * 1.2, 0.1), height/1.52);
+    backgroundButton4Img.position(lerp(backgroundSelect.x, width * 1.2, 0.1), height/1.52);
+
+    backgroundButton5.position(lerp(backgroundSelect.x, width * 1.2, 0.1), height/1.184);
+    backgroundButton5Img.position(lerp(backgroundSelect.x, width * 1.2, 0.1), height/1.184);
+
   }
+
 }
 
 let targetScrollPos = 0;
