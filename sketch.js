@@ -55,7 +55,7 @@ function setup()
   //setting up guis
   GUIApplications();
   //console.log(Object.keys(datastore).length);
-  noCursor();
+  //noCursor();
   document.body.style.cursor = 'none';
   
 
