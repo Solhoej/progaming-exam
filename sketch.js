@@ -56,23 +56,7 @@ function setup()
   GUIApplications();
   //console.log(Object.keys(datastore).length);
   //noCursor();
-  document.body.style.cursor = 'none';
-  
 
-}
-
-function updateCursorPosition(event) {
-  // Calculate target position based on mouse coordinates
-  let targetX = event.clientX - customCursor.offsetWidth / 2;
-  let targetY = event.clientY - customCursor.offsetHeight / 2;
-
-  // Smoothly interpolate current position towards target position
-  let currentX = lerp(parseFloat(customCursor.style.left) || 0, targetX, 0.3);
-  let currentY = lerp(parseFloat(customCursor.style.top) || 0, targetY, 0.3);
-
-  // Update cursor position
-  customCursor.style.left = currentX + 'px';
-  customCursor.style.top = currentY + 'px';
 }
 
 function draw() 
@@ -95,9 +79,9 @@ function hideCursor() {
   document.body.style.cursor = 'none';
 }
 
-document.addEventListener('mousemove', function() {
-  document.body.style.cursor = 'none';
-});
+function showCursor() {
+  document.body.style.cursor = 'pointer';
+}
 
 function displayDatastoreContent(posY=60) {
   //we will declare what the user has searched
@@ -128,6 +112,7 @@ function displayDatastoreContent(posY=60) {
         if(mouseIsPressed)
         {
           fill(40, 45, 48);
+          account1 = key;
         }
       }
       else
@@ -322,7 +307,7 @@ function GUIApplications()
   SearchBar.size(200, 15)
   SearchBar.class("inputForm");
   SearchBar.mouseOver(hideCursor);
-  SearchBar.mouseOut(hideCursor);
+  SearchBar.mouseOut(showCursor);
 
   //forms
   FirstNameBar = createInput();
@@ -332,7 +317,7 @@ function GUIApplications()
   FirstNameBar.class("inputForm");
   FirstNameBar.style('font-size', '20px');
   FirstNameBar.mouseOver(hideCursor);
-  FirstNameBar.mouseOut(hideCursor);
+  FirstNameBar.mouseOut(showCursor);
 
   LastNameBar = createInput();
   LastNameBar.attribute("placeholder", "Enter last name here")
@@ -341,7 +326,7 @@ function GUIApplications()
   LastNameBar.class("inputForm");
   LastNameBar.style('font-size', '20px');
   LastNameBar.mouseOver(hideCursor);
-  LastNameBar.mouseOut(hideCursor);
+  LastNameBar.mouseOut(showCursor);
 
   FakePersonalNumber = createInput();
   FakePersonalNumber.attribute("placeholder", "Enter CPR-Number")
@@ -350,7 +335,7 @@ function GUIApplications()
   FakePersonalNumber.class("inputForm");
   FakePersonalNumber.style('font-size', '20px');
   FakePersonalNumber.mouseOver(hideCursor);
-  FakePersonalNumber.mouseOut(hideCursor);
+  FakePersonalNumber.mouseOut(showCursor);
 
   AdressInput = createInput();
   AdressInput.attribute("placeholder", "Enter Adress Name")
@@ -359,7 +344,7 @@ function GUIApplications()
   AdressInput.class("inputForm");
   AdressInput.style('font-size', '20px');
   AdressInput.mouseOver(hideCursor);
-  AdressInput.mouseOut(hideCursor);
+  AdressInput.mouseOut(showCursor);
 
   CreateAccountButton = createButton("Create Account")
   CreateAccountButton.position(width/1.25, height/1.75)
@@ -368,7 +353,7 @@ function GUIApplications()
   CreateAccountButton.elt.disabled = true;
   CreateAccountButton.mousePressed(CreateButtonFunction);
   CreateAccountButton.mouseOver(hideCursor);
-  CreateAccountButton.mouseOut(hideCursor);
+  CreateAccountButton.mouseOut(showCursor);
 
   errorOutput = createP("You need to fill out all of the forms!");
   errorOutput.position(width/1.25, height/1.65)
@@ -385,14 +370,14 @@ function GUIApplications()
   deleteAccountButton.hide();
   deleteAccountButton.mousePressed(deleteSelectedAccount);
   deleteAccountButton.mouseOver(hideCursor);
-  deleteAccountButton.mouseOut(hideCursor);
+  deleteAccountButton.mouseOut(showCursor);
 
   AccountNameInfo = createP("Name");
   AccountNameInfo.position(width/1.73, height/13)
   AccountNameInfo.style('font-size', '30px');
   AccountNameInfo.style('color', 'white');
   AccountNameInfo.mouseOver(hideCursor);
-  AccountNameInfo.mouseOut(hideCursor);
+  AccountNameInfo.mouseOut(showCursor);
   //AccountNameInfo.hide();
 
   AccountNumberInfo = createP("Account Number");
@@ -400,7 +385,7 @@ function GUIApplications()
   AccountNumberInfo.style('font-size', '10px');
   AccountNumberInfo.style('color', 'white');
   AccountNumberInfo.mouseOver(hideCursor);
-  AccountNumberInfo.mouseOut(hideCursor);
+  AccountNumberInfo.mouseOut(showCursor);
   //AccountNumberInfo.hide();
 
   AccountcprNumberInfo = createP("CPR number");
@@ -408,7 +393,7 @@ function GUIApplications()
   AccountcprNumberInfo.style('font-size', '30px');
   AccountcprNumberInfo.style('color', 'white');
   AccountcprNumberInfo.mouseOver(hideCursor);
-  AccountcprNumberInfo.mouseOut(hideCursor);
+  AccountcprNumberInfo.mouseOut(showCursor);
   //AccountcprNumberInfo.hide();
 
   AccountAddressInfo = createP("Address");
@@ -416,7 +401,7 @@ function GUIApplications()
   AccountAddressInfo.style('font-size', '30px');
   AccountAddressInfo.style('color', 'white');
   AccountAddressInfo.mouseOver(hideCursor);
-  AccountAddressInfo.mouseOut(hideCursor);
+  AccountAddressInfo.mouseOut(showCursor);
   //AccountcprNumberInfo.hide();
 
   AccountCreationdateInfo = createP("Hour:Minute / Day-Month-Year");
@@ -424,7 +409,7 @@ function GUIApplications()
   AccountCreationdateInfo.style('font-size', '30px');
   AccountCreationdateInfo.style('color', 'white');
   AccountCreationdateInfo.mouseOver(hideCursor);
-  AccountCreationdateInfo.mouseOut(hideCursor);
+  AccountCreationdateInfo.mouseOut(showCursor);
   //AccountCreationdateInfo.hide();
 
   AccountHistoryInfo = createP("History");
@@ -432,7 +417,7 @@ function GUIApplications()
   AccountHistoryInfo.style('font-size', '30px');
   AccountHistoryInfo.style('color', 'white');
   AccountHistoryInfo.mouseOver(hideCursor);
-  AccountHistoryInfo.mouseOut(hideCursor);
+  AccountHistoryInfo.mouseOut(showCursor);
   //AccountHistoryInfo.hide();
 
   backgroundsMenuButton = createButton("<")
@@ -442,7 +427,7 @@ function GUIApplications()
   backgroundsMenuButton.style('color', 'white');
   backgroundsMenuButton.mousePressed(OpenMenu);
   backgroundsMenuButton.mouseOver(hideCursor);
-  backgroundsMenuButton.mouseOut(hideCursor);
+  backgroundsMenuButton.mouseOut(showCursor);
 
   MoneyAccountInput = createInput(0);
   MoneyAccountInput.attribute("placeholder", "Enter amount");
@@ -452,7 +437,7 @@ function GUIApplications()
   MoneyAccountInput.style('font-size', '30px');
   MoneyAccountInput.style('color', 'white');
   MoneyAccountInput.mouseOver(hideCursor);
-  MoneyAccountInput.mouseOut(hideCursor);
+  MoneyAccountInput.mouseOut(showCursor);
 
   AddMoneyButton = createButton("+")
   AddMoneyButton.position(width/1.57 ,height/1.2)
@@ -462,7 +447,7 @@ function GUIApplications()
   AddMoneyButton.style('color', 'white');
   AddMoneyButton.mousePressed(AddMoney);
   AddMoneyButton.mouseOver(hideCursor);
-  AddMoneyButton.mouseOut(hideCursor);
+  AddMoneyButton.mouseOut(showCursor);
 
   SubMoneyButton = createButton("-")
   SubMoneyButton.position(width/1.915 ,height/1.2)
@@ -472,14 +457,14 @@ function GUIApplications()
   SubMoneyButton.style('color', 'white');
   SubMoneyButton.mousePressed(SubMoney);
   SubMoneyButton.mouseOver(hideCursor);
-  SubMoneyButton.mouseOut(hideCursor);
+  SubMoneyButton.mouseOut(showCursor);
 
   AccountBalance = createP(0)
   AccountBalance.position(width/1.67, height/2)
   AccountBalance.style('font-size', '30px');
   AccountBalance.style('color', 'white');
   AccountBalance.mouseOver(hideCursor);
-  AccountBalance.mouseOut(hideCursor);
+  AccountBalance.mouseOut(showCursor);
 
   SendMoneyButton = createButton("Send")
   SendMoneyButton.position(width/1.915 ,height/1.1)
@@ -489,13 +474,13 @@ function GUIApplications()
   SendMoneyButton.style('color', 'white');
   SendMoneyButton.mousePressed(OpenTransactionMenu);
   SendMoneyButton.mouseOver(hideCursor);
-  SendMoneyButton.mouseOut(hideCursor);
+  SendMoneyButton.mouseOut(showCursor);
 
   backgroundSelect = createImg("assets/morten.jpg");
   backgroundSelect.position(width*1.1, 0);
   backgroundSelect.size(140, height);
   backgroundSelect.mouseOver(hideCursor);
-  backgroundSelect.mouseOut(hideCursor);
+  backgroundSelect.mouseOut(showCursor);
 
   backgroundButton1Img = createImg("assets/Hut.gif");
   backgroundButton1Img.size(145, 145);
@@ -507,7 +492,7 @@ function GUIApplications()
     document.body.style.backgroundImage = "url('assets/Hut.gif')";
   });
   backgroundButton1.mouseOver(hideCursor);
-  backgroundButton1.mouseOut(hideCursor);
+  backgroundButton1.mouseOut(showCursor);
 
   backgroundButton2Img = createImg("assets/pokemon.gif");
   backgroundButton2Img.size(145, 145);
@@ -520,7 +505,7 @@ function GUIApplications()
     document.body.style.backgroundSize = "cover";
   });
   backgroundButton2.mouseOver(hideCursor);
-  backgroundButton2.mouseOut(hideCursor);
+  backgroundButton2.mouseOut(showCursor);
 
   backgroundButton3Img = createImg("assets/sunflower.gif");
   backgroundButton3Img.size(145, 145);
@@ -532,7 +517,7 @@ function GUIApplications()
     document.body.style.backgroundImage = "url('assets/sunflower.gif')";
   });
   backgroundButton3.mouseOver(hideCursor);
-  backgroundButton3.mouseOut(hideCursor);
+  backgroundButton3.mouseOut(showCursor);
 
   backgroundButton4Img = createImg("assets/trees.gif");
   backgroundButton4Img.size(145, 145);
@@ -544,7 +529,7 @@ function GUIApplications()
     document.body.style.backgroundImage = "url('assets/trees.gif')";
   });
   backgroundButton4.mouseOver(hideCursor);
-  backgroundButton4.mouseOut(hideCursor);
+  backgroundButton4.mouseOut(showCursor);
 
   backgroundButton5Img = createImg("assets/Kunst.jpg");
   backgroundButton5Img.size(145, 145);
@@ -556,7 +541,7 @@ function GUIApplications()
     document.body.style.backgroundImage = "url('assets/Kunst.jpg')";
   });
   backgroundButton5.mouseOver(hideCursor);
-  backgroundButton5.mouseOut(hideCursor);
+  backgroundButton5.mouseOut(showCursor);
 
   SendMoneySelect = createSelect('Select account');
   SendMoneySelect.size(300);
@@ -564,7 +549,7 @@ function GUIApplications()
   SendMoneySelect.hide();
   SendMoneySelect.class('custom-select');
   SendMoneySelect.mouseOver(hideCursor);
-  SendMoneySelect.mouseOut(hideCursor);
+  SendMoneySelect.mouseOut(showCursor);
 
   //customCursor = document.getElementById('custom-cursor');
   //document.addEventListener('mousemove', updateCursorPosition);
@@ -713,20 +698,32 @@ function updateScrollPos() {
   scrollPos = lerp(scrollPos, targetScrollPos, 0.1);
 }
 
-function mousePressed()
-{
-  if(mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height)
-  {
+function mousePressed() {
+  if (mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height) {
     account1 = undefined;
-    console.log(account1)
+    console.log(account1);
   }
 
+  // Check if the click is within the bounds of the displayed search results
   if (mouseX < width / 3 && mouseY > 60) {
     let posY = 60 - scrollPos;
     for (let key in datastore) {
       if (mouseY > posY && mouseY < posY + 140) {
-        account1 = key;
-        return; // Exit the loop once account1 is set
+        // Check if the clicked position matches the displayed account
+        let searchString = SearchBar.value().toLowerCase().replace(/\s/g, '');
+        let searchStringNumber = SearchBar.value().toLowerCase().replace(/\s/g, '');
+        let searchStringAddress = SearchBar.value().toLowerCase().replace(/\s/g, '');
+
+        let account = datastore[key];
+        let fullName = `${account.accountLastName}${account.accountFirstName}`.toLowerCase().replace(/\s/g, '');
+        let accountNumber = account.accountNumber.toLowerCase().replace(/\s/g, '');
+        let accountAddress = account.address.toLowerCase().replace(/\s/g, '');
+
+        if (fullName.includes(searchString) || accountNumber.includes(searchStringNumber) || accountAddress.includes(searchStringAddress)) {
+          // Update account1 only if the clicked position corresponds to the displayed account
+          account1 = key;
+          return; // Exit the loop once account1 is set
+        }
       }
       posY += 140;
     }
