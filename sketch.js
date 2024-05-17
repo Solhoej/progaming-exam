@@ -522,6 +522,8 @@ function GUIApplications()
   SendMoneySelect.hide();
   SendMoneySelect.class('custom-select');
 
+  
+
   //customCursor = document.getElementById('custom-cursor');
   //document.addEventListener('mousemove', updateCursorPosition);
 }
