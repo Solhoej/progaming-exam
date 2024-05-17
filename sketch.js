@@ -306,8 +306,6 @@ function GUIApplications()
   SearchBar.position(width/5, height/8)
   SearchBar.size(200, 15)
   SearchBar.class("inputForm");
-  SearchBar.mouseOver(hideCursor);
-  SearchBar.mouseOut(showCursor);
 
   //forms
   FirstNameBar = createInput();
@@ -316,8 +314,6 @@ function GUIApplications()
   FirstNameBar.size(width/3.9, height/15)
   FirstNameBar.class("inputForm");
   FirstNameBar.style('font-size', '20px');
-  FirstNameBar.mouseOver(hideCursor);
-  FirstNameBar.mouseOut(showCursor);
 
   LastNameBar = createInput();
   LastNameBar.attribute("placeholder", "Enter last name here")
@@ -325,8 +321,6 @@ function GUIApplications()
   LastNameBar.size(width/3.9, height/15)
   LastNameBar.class("inputForm");
   LastNameBar.style('font-size', '20px');
-  LastNameBar.mouseOver(hideCursor);
-  LastNameBar.mouseOut(showCursor);
 
   FakePersonalNumber = createInput();
   FakePersonalNumber.attribute("placeholder", "Enter CPR-Number")
@@ -334,8 +328,6 @@ function GUIApplications()
   FakePersonalNumber.size(width/3.9, height/15)
   FakePersonalNumber.class("inputForm");
   FakePersonalNumber.style('font-size', '20px');
-  FakePersonalNumber.mouseOver(hideCursor);
-  FakePersonalNumber.mouseOut(showCursor);
 
   AdressInput = createInput();
   AdressInput.attribute("placeholder", "Enter Adress Name")
@@ -343,8 +335,6 @@ function GUIApplications()
   AdressInput.size(width/3.9, height/15)
   AdressInput.class("inputForm");
   AdressInput.style('font-size', '20px');
-  AdressInput.mouseOver(hideCursor);
-  AdressInput.mouseOut(showCursor);
 
   CreateAccountButton = createButton("Create Account")
   CreateAccountButton.position(width/1.25, height/1.75)
@@ -352,16 +342,12 @@ function GUIApplications()
   CreateAccountButton.class("button-64");
   CreateAccountButton.elt.disabled = true;
   CreateAccountButton.mousePressed(CreateButtonFunction);
-  CreateAccountButton.mouseOver(hideCursor);
-  CreateAccountButton.mouseOut(showCursor);
 
   errorOutput = createP("You need to fill out all of the forms!");
   errorOutput.position(width/1.25, height/1.65)
   errorOutput.style('font-size', '30px');
   errorOutput.style('color', 'red');
   errorOutput.hide();
-  errorOutput.mouseOver(hideCursor);
-  errorOutput.mouseOut(hideCursor);
 
   deleteAccountButton = createButton("Delete Account")
   deleteAccountButton.position(width/2.15, height)
@@ -369,55 +355,41 @@ function GUIApplications()
   deleteAccountButton.class("button-24");
   deleteAccountButton.hide();
   deleteAccountButton.mousePressed(deleteSelectedAccount);
-  deleteAccountButton.mouseOver(hideCursor);
-  deleteAccountButton.mouseOut(showCursor);
 
   AccountNameInfo = createP("Name");
   AccountNameInfo.position(width/1.73, height/13)
   AccountNameInfo.style('font-size', '30px');
   AccountNameInfo.style('color', 'white');
-  AccountNameInfo.mouseOver(hideCursor);
-  AccountNameInfo.mouseOut(showCursor);
   //AccountNameInfo.hide();
 
   AccountNumberInfo = createP("Account Number");
   AccountNumberInfo.position(width/1.73, height/7)
   AccountNumberInfo.style('font-size', '10px');
   AccountNumberInfo.style('color', 'white');
-  AccountNumberInfo.mouseOver(hideCursor);
-  AccountNumberInfo.mouseOut(showCursor);
   //AccountNumberInfo.hide();
 
   AccountcprNumberInfo = createP("CPR number");
   AccountcprNumberInfo.position(width/2.25, height/5)
   AccountcprNumberInfo.style('font-size', '30px');
   AccountcprNumberInfo.style('color', 'white');
-  AccountcprNumberInfo.mouseOver(hideCursor);
-  AccountcprNumberInfo.mouseOut(showCursor);
   //AccountcprNumberInfo.hide();
 
   AccountAddressInfo = createP("Address");
   AccountAddressInfo.position(width/2.25, height/4)
   AccountAddressInfo.style('font-size', '30px');
   AccountAddressInfo.style('color', 'white');
-  AccountAddressInfo.mouseOver(hideCursor);
-  AccountAddressInfo.mouseOut(showCursor);
   //AccountcprNumberInfo.hide();
 
   AccountCreationdateInfo = createP("Hour:Minute / Day-Month-Year");
   AccountCreationdateInfo.position(width/2.25, height/3.3)
   AccountCreationdateInfo.style('font-size', '30px');
   AccountCreationdateInfo.style('color', 'white');
-  AccountCreationdateInfo.mouseOver(hideCursor);
-  AccountCreationdateInfo.mouseOut(showCursor);
   //AccountCreationdateInfo.hide();
 
   AccountHistoryInfo = createP("History");
   AccountHistoryInfo.position(width/2.25, height/2.8)
   AccountHistoryInfo.style('font-size', '30px');
   AccountHistoryInfo.style('color', 'white');
-  AccountHistoryInfo.mouseOver(hideCursor);
-  AccountHistoryInfo.mouseOut(showCursor);
   //AccountHistoryInfo.hide();
 
   backgroundsMenuButton = createButton("<")
@@ -426,8 +398,6 @@ function GUIApplications()
   backgroundsMenuButton.style('font-size', '30px');
   backgroundsMenuButton.style('color', 'white');
   backgroundsMenuButton.mousePressed(OpenMenu);
-  backgroundsMenuButton.mouseOver(hideCursor);
-  backgroundsMenuButton.mouseOut(showCursor);
 
   MoneyAccountInput = createInput(0);
   MoneyAccountInput.attribute("placeholder", "Enter amount");
@@ -436,8 +406,6 @@ function GUIApplications()
   MoneyAccountInput.size(75, 30)
   MoneyAccountInput.style('font-size', '30px');
   MoneyAccountInput.style('color', 'white');
-  MoneyAccountInput.mouseOver(hideCursor);
-  MoneyAccountInput.mouseOut(showCursor);
 
   AddMoneyButton = createButton("+")
   AddMoneyButton.position(width/1.57 ,height/1.2)
@@ -446,8 +414,6 @@ function GUIApplications()
   AddMoneyButton.style('font-size', '30px');
   AddMoneyButton.style('color', 'white');
   AddMoneyButton.mousePressed(AddMoney);
-  AddMoneyButton.mouseOver(hideCursor);
-  AddMoneyButton.mouseOut(showCursor);
 
   SubMoneyButton = createButton("-")
   SubMoneyButton.position(width/1.915 ,height/1.2)
@@ -456,15 +422,11 @@ function GUIApplications()
   SubMoneyButton.style('font-size', '30px');
   SubMoneyButton.style('color', 'white');
   SubMoneyButton.mousePressed(SubMoney);
-  SubMoneyButton.mouseOver(hideCursor);
-  SubMoneyButton.mouseOut(showCursor);
 
   AccountBalance = createP(0)
   AccountBalance.position(width/1.67, height/2)
   AccountBalance.style('font-size', '30px');
   AccountBalance.style('color', 'white');
-  AccountBalance.mouseOver(hideCursor);
-  AccountBalance.mouseOut(showCursor);
 
   SendMoneyButton = createButton("Send")
   SendMoneyButton.position(width/1.915 ,height/1.1)
@@ -473,14 +435,10 @@ function GUIApplications()
   SendMoneyButton.style('font-size', '25px');
   SendMoneyButton.style('color', 'white');
   SendMoneyButton.mousePressed(OpenTransactionMenu);
-  SendMoneyButton.mouseOver(hideCursor);
-  SendMoneyButton.mouseOut(showCursor);
 
   backgroundSelect = createImg("assets/morten.jpg");
   backgroundSelect.position(width*1.1, 0);
   backgroundSelect.size(140, height);
-  backgroundSelect.mouseOver(hideCursor);
-  backgroundSelect.mouseOut(showCursor);
 
   backgroundButton1Img = createImg("assets/Hut.gif");
   backgroundButton1Img.size(145, 145);
@@ -491,8 +449,6 @@ function GUIApplications()
   backgroundButton1.mousePressed(function() {
     document.body.style.backgroundImage = "url('assets/Hut.gif')";
   });
-  backgroundButton1.mouseOver(hideCursor);
-  backgroundButton1.mouseOut(showCursor);
 
   backgroundButton2Img = createImg("assets/pokemon.gif");
   backgroundButton2Img.size(145, 145);
@@ -504,8 +460,6 @@ function GUIApplications()
     document.body.style.backgroundImage = "url('assets/pokemon.gif')";
     document.body.style.backgroundSize = "cover";
   });
-  backgroundButton2.mouseOver(hideCursor);
-  backgroundButton2.mouseOut(showCursor);
 
   backgroundButton3Img = createImg("assets/sunflower.gif");
   backgroundButton3Img.size(145, 145);
@@ -516,8 +470,6 @@ function GUIApplications()
   backgroundButton3.mousePressed(function() {
     document.body.style.backgroundImage = "url('assets/sunflower.gif')";
   });
-  backgroundButton3.mouseOver(hideCursor);
-  backgroundButton3.mouseOut(showCursor);
 
   backgroundButton4Img = createImg("assets/trees.gif");
   backgroundButton4Img.size(145, 145);
@@ -528,8 +480,6 @@ function GUIApplications()
   backgroundButton4.mousePressed(function() {
     document.body.style.backgroundImage = "url('assets/trees.gif')";
   });
-  backgroundButton4.mouseOver(hideCursor);
-  backgroundButton4.mouseOut(showCursor);
 
   backgroundButton5Img = createImg("assets/Kunst.jpg");
   backgroundButton5Img.size(145, 145);
@@ -540,16 +490,12 @@ function GUIApplications()
   backgroundButton5.mousePressed(function() {
     document.body.style.backgroundImage = "url('assets/Kunst.jpg')";
   });
-  backgroundButton5.mouseOver(hideCursor);
-  backgroundButton5.mouseOut(showCursor);
 
   SendMoneySelect = createSelect('Select account');
   SendMoneySelect.size(300);
   SendMoneySelect.position(width, height);
   SendMoneySelect.hide();
   SendMoneySelect.class('custom-select');
-  SendMoneySelect.mouseOver(hideCursor);
-  SendMoneySelect.mouseOut(showCursor);
 
   //customCursor = document.getElementById('custom-cursor');
   //document.addEventListener('mousemove', updateCursorPosition);
