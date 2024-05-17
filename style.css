@@ -71,6 +71,31 @@ canvas {
   opacity: .5;
 }
 
+.button-lie {
+  background: #4f4f4f;
+  border: 1px solid #4f4f4f;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: auto;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 5px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
 .custom-select {
   
   background-color: #f1f1f127;
@@ -161,7 +186,7 @@ canvas {
   line-height: 16px;
   min-height: 40px;
   outline: 0;
-  padding: 12px 14px;
+  padding: 14px 14px;
   text-align: center;
   text-rendering: geometricprecision;
   text-transform: none;

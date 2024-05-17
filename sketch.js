@@ -203,7 +203,12 @@ function checkInputs(FirstName, LastName, CPRNumber, Adress)
   let cprNumber = CPRNumber
   let address = Adress
 
-  if (firstName == "" || lastName == "" || cprNumber == "" || address == "")
+  if(cprNumber == "Admin")
+  {
+    CreateAccountButton.elt.disabled = false;
+    errorOutput.hide();
+  }
+  else if (firstName == "" || lastName == "" || cprNumber == "" || address == "" || cprNumber.length < 10)
   {
     CreateAccountButton.elt.disabled = true;
     errorOutput.show();
@@ -424,7 +429,7 @@ function GUIApplications()
   SubMoneyButton.mousePressed(SubMoney);
 
   AccountBalance = createP(0)
-  AccountBalance.position(width/1.67, height/2)
+  AccountBalance.position(width/2.25, height/2)
   AccountBalance.style('font-size', '30px');
   AccountBalance.style('color', 'white');
 
@@ -491,9 +496,29 @@ function GUIApplications()
     document.body.style.backgroundImage = "url('assets/Kunst.jpg')";
   });
 
+  ButtonBackgroundLier = createButton("")
+  ButtonBackgroundLier.elt.disabled = true;
+  ButtonBackgroundLier.class("button-lie");
+  ButtonBackgroundLier.position(400, 100)
+  ButtonBackgroundLier.size(width-500, height-40)
+  ButtonBackgroundLier.hide();
+
+  ChooseAccountLabel = createP("Choose an account");
+  ChooseAccountLabel.position(width/2, (height-40)/12)
+  ChooseAccountLabel.style('font-size', '40px');
+  ChooseAccountLabel.style('color', 'white');
+  ChooseAccountLabel.hide();
+
+  closeTransactionsButton = createButton("X")
+  closeTransactionsButton.position(width-160, height/7.6)
+  closeTransactionsButton.size(width/25, height/15)
+  closeTransactionsButton.class("button-24");
+  closeTransactionsButton.hide();
+  closeTransactionsButton.mousePressed(CloseTransactionMenu);
+
   SendMoneySelect = createSelect('Select account');
   SendMoneySelect.size(300);
-  SendMoneySelect.position(width, height);
+  SendMoneySelect.position(width/2, (height-40)/5);
   SendMoneySelect.hide();
   SendMoneySelect.class('custom-select');
 
@@ -525,6 +550,17 @@ function OpenTransactionMenu()
   }
 
   SendMoneySelect.show();
+  ChooseAccountLabel.show();
+  ButtonBackgroundLier.show();
+  closeTransactionsButton.show();
+}
+
+function CloseTransactionMenu()
+{
+  SendMoneySelect.hide();
+  ChooseAccountLabel.hide();
+  ButtonBackgroundLier.hide();
+  closeTransactionsButton.hide();
 }
 
 function SendMoney()
