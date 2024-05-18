@@ -68,7 +68,7 @@ function draw()
   displaySelectedAccount();
   BackgroundsMenu();
   updateScrollPos();
-
+  accountToTransfer = SendMoneySelect.value();
   if(account1 && datastore[account1].cprNumber == "Admin")
   {
     datastore[account1].isAdmin = true;
@@ -535,6 +535,9 @@ function GUIApplications()
   AcceptTransactionButton.size(width/4.75, height/22.5);
   AcceptTransactionButton.hide();
   AcceptTransactionButton.class("button-64");
+  AcceptTransactionButton.mousePressed(function() {
+    sendMoney(account1, accountToTransfer, MoneyToTransfer.value())
+  });
 
   //customCursor = document.getElementById('custom-cursor');
   //document.addEventListener('mousemove', updateCursorPosition);
