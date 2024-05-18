@@ -29,6 +29,7 @@ let b1 = 60;
 
 //decides which accounts to be displayed in the middle display
 let account1;
+let accountToTransfer;
 
 let targetedAccount;
 
@@ -521,9 +522,7 @@ function GUIApplications()
   SendMoneySelect.position(width/2, (height-40)/5);
   SendMoneySelect.hide();
   SendMoneySelect.class('custom-select');
-
   
-
   //customCursor = document.getElementById('custom-cursor');
   //document.addEventListener('mousemove', updateCursorPosition);
 }
