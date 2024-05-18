@@ -110,19 +110,23 @@ function displayDatastoreContent(posY=60) {
       if(mouseX > (width/60) + 40 && mouseX < (width/60 + 20) + (width/3) - 95 && mouseY > posY + 50 && mouseY < posY + 145)
       {
         fill(44,48,61);
+        stroke(180, 5, 5);
+        strokeWeight(5);
         if(mouseIsPressed)
         {
           fill(40, 45, 48);
+          stroke(5, 180, 5);
+          strokeWeight(5);
           account1 = key;
         }
       }
       else
       {
         fill(r1, g1, b1);
+        stroke(180);
+        strokeWeight(1);
       }
-
-      stroke(180);
-      strokeWeight(1);
+      
       rect(width/60 + 20, posY - 20, (width/3) - 120, 90);
 
       stroke(180);
@@ -181,7 +185,17 @@ function displaySelectedAccount()
     AccountcprNumberInfo.html(datastore[account1].cprNumber)
     AccountAddressInfo.html(datastore[account1].address)
     AccountCreationdateInfo.html(ControlVariable2 + datastore[account1].creationDate[0] + ":" + ControlVariable3 + datastore[account1].creationDate[1] + " / " + datastore[account1].creationDate[2] + "-" + ControlVariable + datastore[account1].creationDate[3] + "-" + datastore[account1].creationDate[4])
-    AccountHistoryInfo.html(datastore[account1].accountHistory)
+    //AccountHistoryInfo.html(datastore[account1].accountHistory)
+
+    let history = datastore[account1].accountHistory;
+    let formattedHistory = '';
+
+    for (let [key, value] of Object.entries(history)) {
+        formattedHistory += `Transaction ${key}: ${value}<br>`;
+    }
+
+    AccountHistoryInfo.html(formattedHistory);
+
   }
 }
 
@@ -243,6 +257,7 @@ function checkInputs(FirstName, LastName, CPRNumber, Adress)
     AccountcprNumberInfo.show()
     AccountAddressInfo.show()
     AccountCreationdateInfo.show()
+    AccountHistoryInfo.show();
 
     if(datastore[account1].isAdmin)
     {
@@ -536,7 +551,7 @@ function GUIApplications()
   AcceptTransactionButton.hide();
   AcceptTransactionButton.class("button-64");
   AcceptTransactionButton.mousePressed(function() {
-    sendMoney(account1, accountToTransfer, MoneyToTransfer.value())
+    sendMoney(account1, SendMoneySelect.value(), MoneyToTransfer.value())
   });
 
   //customCursor = document.getElementById('custom-cursor');
@@ -609,6 +624,15 @@ function sendMoney(fromAccount, toAccount, amount) {
 
   datastore[fromAccount].balance -= amount;
   datastore[toAccount].balance += amount;
+
+  let fromTransactionId = Object.keys(datastore[fromAccount].accountHistory).length + 1;
+  let toTransactionId = Object.keys(datastore[toAccount].accountHistory).length + 1;
+    
+  let fromAccountHistoryEntry = `Sent ${amount} to ${toAccount}`;
+  let toAccountHistoryEntry = `Received ${amount} from ${fromAccount}`;
+    
+  datastore[fromAccount].accountHistory[fromTransactionId] = fromAccountHistoryEntry;
+  datastore[toAccount].accountHistory[toTransactionId] = toAccountHistoryEntry;
 
   localStorage.setItem('datastore', JSON.stringify(datastore));
 

@@ -11,7 +11,7 @@ class Accounts
 
         this.balance = balance;
         this.accountNumber;
-        this.accountHistory = {"1":""};
+        this.accountHistory = {};
         this.account;
 
         this.isAdmin = false;
