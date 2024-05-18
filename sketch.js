@@ -522,7 +522,20 @@ function GUIApplications()
   SendMoneySelect.position(width/2, (height-40)/5);
   SendMoneySelect.hide();
   SendMoneySelect.class('custom-select');
-  
+
+  MoneyToTransfer = createInput()
+  MoneyToTransfer.attribute("placeholder", "Enter amount to transfer")
+  MoneyToTransfer.size(width/5.5, height/100);
+  MoneyToTransfer.position(width/2, height/4);
+  MoneyToTransfer.hide();
+  MoneyToTransfer.class("custom-select");
+
+  AcceptTransactionButton = createButton("Transfer")
+  AcceptTransactionButton.position(width/2, height/3.44);
+  AcceptTransactionButton.size(width/4.75, height/22.5);
+  AcceptTransactionButton.hide();
+  AcceptTransactionButton.class("button-64");
+
   //customCursor = document.getElementById('custom-cursor');
   //document.addEventListener('mousemove', updateCursorPosition);
 }
@@ -554,6 +567,8 @@ function OpenTransactionMenu()
   ChooseAccountLabel.show();
   ButtonBackgroundLier.show();
   closeTransactionsButton.show();
+  AcceptTransactionButton.show();
+  MoneyToTransfer.show();
 }
 
 function CloseTransactionMenu()
@@ -562,11 +577,44 @@ function CloseTransactionMenu()
   ChooseAccountLabel.hide();
   ButtonBackgroundLier.hide();
   closeTransactionsButton.hide();
+  AcceptTransactionButton.hide();
+  MoneyToTransfer.hide();
 }
 
-function SendMoney()
-{
+function sendMoney(fromAccount, toAccount, amount) {
+  amount = parseInt(amount);
+  if (!datastore[fromAccount] || !datastore[toAccount]) {
+    errorOutput.html("Invalid account selected!");
+    errorOutput.style('color', 'red');
+    errorOutput.show();
+    return;
+  }
+  
+  if (isNaN(amount) || amount <= 0) {
+    errorOutput.html("Invalid amount entered!");
+    errorOutput.style('color', 'red');
+    errorOutput.show();
+    return;
+  }
 
+  if (datastore[fromAccount].balance < amount) {
+    errorOutput.html("Insufficient balance!");
+    errorOutput.style('color', 'red');
+    errorOutput.show();
+    return;
+  }
+
+  datastore[fromAccount].balance -= amount;
+  datastore[toAccount].balance += amount;
+
+  localStorage.setItem('datastore', JSON.stringify(datastore));
+
+  MoneyAccountInput.value(0);
+  errorOutput.html("Transaction successful!");
+  errorOutput.style('color', 'green');
+  errorOutput.show();
+
+  CloseTransactionMenu();
 }
 
 function CreateButtonFunction() 
