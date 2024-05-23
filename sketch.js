@@ -30,6 +30,7 @@ let b1 = 60;
 //decides which accounts to be displayed in the middle display
 let account1;
 let accountToTransfer;
+let accountFromTransfer;
 
 let targetedAccount;
 
@@ -551,7 +552,7 @@ function GUIApplications()
   AcceptTransactionButton.hide();
   AcceptTransactionButton.class("button-64");
   AcceptTransactionButton.mousePressed(function() {
-    sendMoney(account1, SendMoneySelect.value(), MoneyToTransfer.value())
+    sendMoney(accountFromTransfer, SendMoneySelect.value().toString(), MoneyToTransfer.value())
   });
 
   //customCursor = document.getElementById('custom-cursor');
@@ -574,7 +575,8 @@ function SubMoney()
 
 function OpenTransactionMenu()
 {
-  print('sigma');
+  //print('sigma');
+  accountFromTransfer = account1;
   for (let key in datastore) 
   {
     let currentAccount = datastore[key];
@@ -601,6 +603,7 @@ function CloseTransactionMenu()
 
 function sendMoney(fromAccount, toAccount, amount) {
   amount = parseInt(amount);
+  console.log(fromAccount, toAccount)
   if (!datastore[fromAccount] || !datastore[toAccount]) {
     errorOutput.html("Invalid account selected!");
     errorOutput.style('color', 'red');
