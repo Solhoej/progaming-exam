@@ -45,7 +45,6 @@ function setup()
 {
   createCanvas(windowWidth/1.2, windowHeight/1.2);
   background(127, 94, 145, 25);
-
   //create a localStorage to save our datastore
   let savedData = localStorage.getItem('datastore');
   if (savedData) 
@@ -349,7 +348,7 @@ function GUIApplications()
   FakePersonalNumber.position(width/1.25, height/2.75)
   FakePersonalNumber.size(width/3.9, height/15)
   FakePersonalNumber.class("inputForm");
-  FakePersonalNumber.style('font-size', '20px');
+  FakePersonalNumber.style('font-size', '20px')
 
   AdressInput = createInput();
   AdressInput.attribute("placeholder", "Enter Adress Name")
