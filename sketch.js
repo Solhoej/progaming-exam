@@ -446,7 +446,7 @@ function GUIApplications()
   SubMoneyButton.mousePressed(SubMoney);
 
   AccountBalance = createP(0)
-  AccountBalance.position(width/2.25, height/2)
+  AccountBalance.position(width/1.73, height/8)
   AccountBalance.style('font-size', '30px');
   AccountBalance.style('color', 'white');
 
@@ -472,45 +472,45 @@ function GUIApplications()
     document.body.style.backgroundImage = "url('assets/Hut.gif')";
   });
 
-  backgroundButton2Img = createImg("assets/pokemon.gif");
+  backgroundButton2Img = createImg("assets/Dirthut.png");
   backgroundButton2Img.size(145, 145);
   backgroundButton2 = createButton('');
   backgroundButton2.size(145, 145);
   backgroundButton2.position(width*1.1, 0);
   backgroundButton2.elt.style.opacity = '0';
   backgroundButton2.mousePressed(function() {
-    document.body.style.backgroundImage = "url('assets/pokemon.gif')";
+    document.body.style.backgroundImage = "url('assets/Dirthut.png')";
     document.body.style.backgroundSize = "cover";
   });
 
-  backgroundButton3Img = createImg("assets/sunflower.gif");
+  backgroundButton3Img = createImg("assets/Mew.png");
   backgroundButton3Img.size(145, 145);
   backgroundButton3 = createButton('');
   backgroundButton3.size(145, 145);
   backgroundButton3.position(width*1.1, 0);
   backgroundButton3.elt.style.opacity = '0';
   backgroundButton3.mousePressed(function() {
-    document.body.style.backgroundImage = "url('assets/sunflower.gif')";
+    document.body.style.backgroundImage = "url('assets/Mew.png')";
   });
 
-  backgroundButton4Img = createImg("assets/trees.gif");
+  backgroundButton4Img = createImg("assets/Mewtwo.png");
   backgroundButton4Img.size(145, 145);
   backgroundButton4 = createButton('');
   backgroundButton4.size(145, 145);
   backgroundButton4.position(width*1.1, 0);
   backgroundButton4.elt.style.opacity = '0';
   backgroundButton4.mousePressed(function() {
-    document.body.style.backgroundImage = "url('assets/trees.gif')";
+    document.body.style.backgroundImage = "url('assets/Mewtwo.png')";
   });
 
-  backgroundButton5Img = createImg("assets/Kunst.jpg");
+  backgroundButton5Img = createImg("assets/Moltres.png");
   backgroundButton5Img.size(145, 145);
   backgroundButton5 = createButton('');
   backgroundButton5.size(145, 145);
   backgroundButton5.position(width*1.1, 0);
   backgroundButton5.elt.style.opacity = '0';
   backgroundButton5.mousePressed(function() {
-    document.body.style.backgroundImage = "url('assets/Kunst.jpg')";
+    document.body.style.backgroundImage = "url('assets/Moltres.png')";
   });
 
   ButtonBackgroundLier = createButton("")
