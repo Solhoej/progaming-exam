@@ -145,7 +145,7 @@ function CloseTransactionMenu()
 
 function sendMoney(fromAccount, toAccount, amount) {
   amount = parseInt(amount);
-  console.log(fromAccount, toAccount)
+  fromAccount = accountFromTransfer;
   if (!datastore[fromAccount] || !datastore[toAccount]) {
     errorOutput.html("Invalid account selected!");
     errorOutput.style('color', 'red');

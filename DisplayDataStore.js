@@ -36,6 +36,7 @@ function displayDatastoreContent(posY = 60)
             fill(40, 45, 48);
             stroke(5, 180, 5);
             strokeWeight(5);
+            accountFromTransfer = key;
             account1 = key;
             prevScrollTarget = targetScrollPos;
             targetScrollPos = 0;
