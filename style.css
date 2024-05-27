@@ -301,3 +301,9 @@ canvas {
   animation: cursorAnim5 .2s forwards;
   border: 1px solid rgb(76, 125, 216);
 }
+/* 
+#account-history-container 
+{
+  max-height: 1600px;
+  overflow-y: auto;
+} */
