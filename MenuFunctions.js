@@ -38,6 +38,18 @@ function OpenMenu()
   menuState = !menuState;
 
   targetX = menuState ? width * 1.17 : width * 1.07;
+
+  if(menuState)
+  {
+    backgroundsMenuButton.html("<")
+    backgroundsMenuButton.class("button-64");
+  }
+  else
+  {
+    backgroundsMenuButton.html(">")
+    backgroundsMenuButton.class("button-24");
+  }
+
 }
 
 function BackgroundsMenu()
