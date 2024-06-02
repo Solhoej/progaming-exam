@@ -47,6 +47,7 @@ let hideAlpha = 0;
 //determines the scroll position
 let scrollPos = 0;
 
+
 function setup() 
 {
   createCanvas(windowWidth/1.2, windowHeight/1.2);
@@ -64,24 +65,27 @@ function setup()
   //console.log(Object.keys(datastore).length);
   //noCursor();
 
-
+  for (let key in datastore) 
+    {
+      let currentAccount = datastore[key];
+      SendMoneySelect.option(currentAccount.accountNumber);
+    }
 }
 
 function draw() 
 {
-  console.log(sendMoneyOpened);
-
   //making everything work repeatedly
   GUI();
   checkInputs(FirstNameBar.value(), LastNameBar.value(), FakePersonalNumber.value(), AdressInput.value());
   displaySelectedAccount();
   BackgroundsMenu();
   updateScrollPos();
-  accountToTransfer = SendMoneySelect.value();
+
+  accountToTransfer = SendMoneySelect.value().toString();
   accountFromTransfer = account1;
 
   console.log("from transfer: " + accountFromTransfer);
-  console.log("to transfer: " + accountToTransfer);
+  console.log("previous to transfer selected: " + accountToTransfer);
   if(account1 && datastore[account1].cprNumber == "Admin")
   {
     datastore[account1].isAdmin = true;

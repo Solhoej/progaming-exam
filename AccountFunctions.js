@@ -99,6 +99,12 @@ function createAccount(FirstName, LastName, CPRNumber, Address, Balance=0)
   localStorage.setItem('datastore', JSON.stringify(datastore));
   print(datastore);
   print(account1);
+
+  for (let key in datastore) 
+    {
+      let currentAccount = datastore[key];
+      SendMoneySelect.option(currentAccount.accountNumber);
+    }
 }
 
 function AddMoney()
@@ -118,11 +124,11 @@ function SubMoney()
 function OpenTransactionMenu()
 {
   accountFromTransfer = account1;
-  for (let key in datastore) 
-  {
-    let currentAccount = datastore[key];
-    SendMoneySelect.option(currentAccount.accountNumber);
-  }
+  //for (let key in datastore) 
+  //{
+    //let currentAccount = datastore[key];
+    //SendMoneySelect.option(currentAccount.accountNumber);
+ // }
 
   SendMoneySelect.show();
   ChooseAccountLabel.show();
@@ -132,6 +138,7 @@ function OpenTransactionMenu()
   MoneyToTransfer.show();
 
   sendMoneyOpened = true;
+  //accountToTransfer = SendMoneySelect.value().toString();
 }
 
 function CloseTransactionMenu()
@@ -146,11 +153,12 @@ function CloseTransactionMenu()
   sendMoneyOpened = false;
 }
 
-function sendMoney(toAccount, amount) {
+function sendMoney(amount) {
   amount = parseInt(amount);
-  console.log("from transfer: " + accountFromTransfer);
-  console.log("to transfer: " + toAccount);
-  if (!datastore[accountFromTransfer] || !datastore[toAccount]) {
+ // toAccount = SendMoneySelect.value().toString();
+  //accountToTransfer = SendMoneySelect.value().toString();
+
+  if (!datastore[accountFromTransfer] || !datastore[accountToTransfer]) {
     errorOutput.html("Invalid account selected!");
     errorOutput.style('color', 'red');
     errorOutput.show();
@@ -172,16 +180,16 @@ function sendMoney(toAccount, amount) {
   }
 
   datastore[accountFromTransfer].balance -= amount;
-  datastore[toAccount].balance += amount;
+  datastore[accountToTransfer].balance += amount;
 
   let fromTransactionId = Object.keys(datastore[accountFromTransfer].accountHistory).length + 1;
-  let toTransactionId = Object.keys(datastore[toAccount].accountHistory).length + 1;
+  let toTransactionId = Object.keys(datastore[accountToTransfer].accountHistory).length + 1;
     
-  let fromAccountHistoryEntry = `Sent ${amount} to ${toAccount}`;
+  let fromAccountHistoryEntry = `Sent ${amount} to ${accountToTransfer}`;
   let toAccountHistoryEntry = `Received ${amount} from ${accountFromTransfer}`;
     
   datastore[accountFromTransfer].accountHistory[fromTransactionId] = fromAccountHistoryEntry;
-  datastore[toAccount].accountHistory[toTransactionId] = toAccountHistoryEntry;
+  datastore[accountToTransfer].accountHistory[toTransactionId] = toAccountHistoryEntry;
 
   localStorage.setItem('datastore', JSON.stringify(datastore));
 
