@@ -96,9 +96,14 @@ function updateScrollPos() {
 
 function mousePressed() {
   if (mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height) {
-    account1 = undefined;
-    accountOpened = false;
-    targetScrollPos = prevScrollTarget;
-    console.log(account1);
+    if (!sendMoneyOpened)
+    {
+      account1 = undefined;
+      accountOpened = false;
+      targetScrollPos = prevScrollTarget;
+      console.log("Account1: " + account1);
+    } else {
+      console.log("Sendmoney is open my g" + " Account1: " + account1);
+    }
   }
 }

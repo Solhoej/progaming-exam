@@ -230,7 +230,7 @@ function GUIApplications()
   AcceptTransactionButton.hide();
   AcceptTransactionButton.class("button-64");
   AcceptTransactionButton.mousePressed(function() {
-    sendMoney(accountFromTransfer, SendMoneySelect.value().toString(), MoneyToTransfer.value())
+    sendMoney(SendMoneySelect.value().toString(), MoneyToTransfer.value())
   });
 
   //customCursor = document.getElementById('custom-cursor');

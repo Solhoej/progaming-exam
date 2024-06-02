@@ -19,6 +19,7 @@ let SendMoneyButton;
 let backgroundsMenuButton;
 
 let SendMoneySelect;
+let sendMoneyOpened = false;
 
 let accountOpened = false;
 
@@ -68,6 +69,8 @@ function setup()
 
 function draw() 
 {
+  console.log(sendMoneyOpened);
+
   //making everything work repeatedly
   GUI();
   checkInputs(FirstNameBar.value(), LastNameBar.value(), FakePersonalNumber.value(), AdressInput.value());
@@ -75,6 +78,10 @@ function draw()
   BackgroundsMenu();
   updateScrollPos();
   accountToTransfer = SendMoneySelect.value();
+  accountFromTransfer = account1;
+
+  console.log("from transfer: " + accountFromTransfer);
+  console.log("to transfer: " + accountToTransfer);
   if(account1 && datastore[account1].cprNumber == "Admin")
   {
     datastore[account1].isAdmin = true;
